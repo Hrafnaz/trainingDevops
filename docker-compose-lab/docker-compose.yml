@@ -10,6 +10,7 @@ services:
       - app_data:/var/www/html 
     networks: 
       - app-network 
+      - db-network
 
   db: 
     image: mysql:8.0 
@@ -19,7 +20,7 @@ services:
     volumes: 
       - db_data:/var/lib/mysql - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql 
     networks: 
-      - app-network 
+      - db-network 
   nginx: 
     image: nginx:latest 
     ports: 
@@ -33,6 +34,7 @@ services:
 
 networks: 
   app-network:
+  db-network:
 volumes: 
   db_data: 
   app_data:
